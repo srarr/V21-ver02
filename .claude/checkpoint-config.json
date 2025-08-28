@@ -1,0 +1,95 @@
+{
+  "version": "1.0",
+  "description": "Configuration for checkpoint-manager automation system",
+  "lastUpdated": "2025-08-27T00:00:00Z",
+  "files": {
+    "ROADMAP.md": {
+      "path": "/mnt/c/New Claude Code/V21 Ver01/ROADMAP.md",
+      "sections": [
+        {
+          "phase": "1.3",
+          "startLine": 58,
+          "endLine": 86,
+          "checkboxPattern": "- \\[ \\]",
+          "completedPattern": "- \\[x\\]"
+        },
+        {
+          "phase": "1.4", 
+          "startLine": 88,
+          "endLine": 108,
+          "checkboxPattern": "- \\[ \\]",
+          "completedPattern": "- \\[x\\]"
+        },
+        {
+          "phase": "1.5",
+          "startLine": 109,
+          "endLine": 137,
+          "checkboxPattern": "- \\[ \\]", 
+          "completedPattern": "- \\[x\\]"
+        },
+        {
+          "phase": "1.6",
+          "startLine": 138,
+          "endLine": 338,
+          "checkboxPattern": "- \\[ \\]",
+          "completedPattern": "- \\[x\\]"
+        }
+      ]
+    },
+    "PHASE1-TASKS.md": {
+      "path": "/mnt/c/New Claude Code/V21 Ver01/PHASE1-TASKS.md",
+      "sections": [
+        {
+          "phase": "1.3",
+          "startLine": 1,
+          "endLine": 50,
+          "checkboxPattern": "- \\[ \\]",
+          "completedPattern": "- \\[x\\]"
+        }
+      ]
+    },
+    "CONTINUITY.md": {
+      "path": "/mnt/c/New Claude Code/V21 Ver01/CONTINUITY.md",
+      "sections": [
+        {
+          "phase": "global",
+          "statusLine": "Current Status:",
+          "updatePattern": "Current Status: Phase {phase} {status}"
+        }
+      ]
+    }
+  },
+  "taskMapping": {
+    "1.3.1": {
+      "title": "State Machine Flow",
+      "files": ["apps/orchestrator/src/graph.ts", "apps/orchestrator/src/nodes/"],
+      "keywords": ["state", "transition", "architect", "synth", "t0", "pack"]
+    },
+    "1.3.2": {
+      "title": "Mock Node Implementations", 
+      "files": ["apps/orchestrator/src/nodes/architect.ts", "apps/orchestrator/src/nodes/synth.ts"],
+      "keywords": ["blueprint", "StrategyDSL", "mock"]
+    },
+    "1.3.3": {
+      "title": "Event System",
+      "files": ["apps/orchestrator/src/lib/bus.ts", "apps/api/internal/handlers/"],
+      "keywords": ["event", "sse", "database", "sequence"]
+    }
+  },
+  "automation": {
+    "enabledHooks": ["post-commit", "pre-push"],
+    "watchFiles": [
+      "apps/orchestrator/src/**/*.ts",
+      "apps/api/internal/**/*.go", 
+      "apps/web/src/**/*.{js,ts,svelte}",
+      "contracts/openapi.yaml",
+      "migrations/*.sql"
+    ],
+    "triggerPatterns": {
+      "test_pass": "PASS|✓|✅|passed",
+      "endpoint_add": "router\\.|app\\.|r\\.",
+      "contract_update": "openapi\\.yaml|schemas/",
+      "migration_add": "migrations/.*\\.sql"
+    }
+  }
+}
