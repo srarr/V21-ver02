@@ -380,6 +380,17 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 # local-config/
 # my-custom-files/
 
+# Claude specific
+.claude/backups/
+.claude/*.backup.*
+.claude/hook-execution.log
+
+# Testing artifacts
+.hypothesis/
+
+# Ensure node_modules is ignored everywhere
+**/node_modules/
+
 # Temporary development files
 TODO.md
 SCRATCH.md

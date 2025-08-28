@@ -49,6 +49,9 @@ Backup Files:
    - Phase status = "completed" ONLY when ALL tasks are "completed"
    - Phase status = "pending" if ANY task is "pending"
    - Never mark future phases as completed
+   - **MUST validate actual work exists before marking complete**
+   - **NEVER auto-complete phases without file evidence**
+   - **Require minimum 30 minutes between phase completions**
 
 2. **Statistics Calculation**
    - Count only task items (pattern: "id": "1.X.Y")
@@ -76,16 +79,19 @@ Backup Files:
 ### Repair Workflow
 ```python
 1. Create timestamped backup
-2. For each phase in todos.json:
+2. Run validation script (.claude/validate-checkpoint.sh)
+3. For each phase in todos.json:
    - Count completed vs total tasks
-   - Update phase status if needed
-3. Sync PHASE1-TASKS.md checkboxes:
-   - Phase 1.1-1.2: [x] if completed
-   - Phase 1.3-1.6: [ ] if pending
-4. Update statistics in todos.json
-5. Remove duplicates from completed.txt
-6. Update CONTINUITY.md status line
-7. Report all changes made
+   - Validate actual files exist (use checkpoint-guard.json)
+   - Update phase status ONLY if validation passes
+4. Sync PHASE1-TASKS.md checkboxes:
+   - Mark [x] ONLY if files exist
+   - Mark [ ] if no evidence found
+5. Update statistics in todos.json
+6. Remove duplicates from completed.txt
+7. Update CONTINUITY.md status line
+8. Report all changes made
+9. WARN if marking complete without evidence
 ```
 
 ### Report Workflow
@@ -140,6 +146,35 @@ Backup Files:
 # Fix specific issue
 /agents checkpoint-manager "fix phase 1.3 status inconsistency"
 ```
+
+## Validation Requirements (CRITICAL)
+
+### Before Marking Any Phase Complete:
+
+1. **File Evidence Required**
+   - Run `.claude/validate-checkpoint.sh`
+   - Check files listed in `checkpoint-guard.json`
+   - Verify actual code files exist, not just placeholders
+
+2. **Time Validation**
+   - Minimum 30 minutes between phase completions
+   - Flag completions under 2 hours as suspicious
+   - Check timestamps for realistic work periods
+
+3. **Work Evidence by Phase**
+   - Phase 1.4: `apps/web/` must have full SvelteKit project
+   - Phase 1.5: `tests/` must have actual test files
+   - Phase 1.6: `apps/web/src/` must have containers/components
+
+### Red Flags to Prevent:
+- ❌ All tasks in a phase marked complete at same timestamp
+- ❌ Phase complete without corresponding files
+- ❌ Multiple phases completed within minutes
+- ❌ 100% completion without all deliverables
+
+### Override Only With:
+- User explicit confirmation
+- Environment variable: `CHECKPOINT_FORCE_COMPLETE=true`
 
 ## Output Format
 

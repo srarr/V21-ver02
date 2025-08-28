@@ -62,44 +62,44 @@
 
 ---
 
-## ✅ Phase 1.4: Frontend (SvelteKit) [COMPLETED]
+## 🎨 Phase 1.4: Frontend (SvelteKit) [PENDING]
 
 ### Core Components
-- [x] **Chat Interface**: Input field + submit
-- [x] **SSE Client**: Auto-connects, handles reconnection
-- [x] **Timeline View**: Shows events by `seq`
-- [x] **Metrics Panel**: Displays mock backtest results
-- [x] **Portfolio Manager**: Save/list functionality
+- [ ] **Chat Interface**: Input field + submit
+- [ ] **SSE Client**: Auto-connects, handles reconnection
+- [ ] **Timeline View**: Shows events by `seq`
+- [ ] **Metrics Panel**: Displays mock backtest results
+- [ ] **Portfolio Manager**: Save/list functionality
 
 ### UI/UX
-- [x] Loading states during execution
-- [x] Error handling for failed runs
-- [x] Responsive design (mobile-friendly)
-- [x] Real-time updates (no manual refresh)
+- [ ] Loading states during execution
+- [ ] Error handling for failed runs
+- [ ] Responsive design (mobile-friendly)
+- [ ] Real-time updates (no manual refresh)
 
 ---
 
-## ✅ Phase 1.5: Integration & Testing [COMPLETED]
+## 🧪 Phase 1.5: Integration & Testing [PENDING]
 
 ### Test Suites
-- [x] **API Tests**: Postman/Jest collection
-- [x] **SSE Tests**: WebSocket client verification
-- [x] **Contract Tests**: Schemathesis
-- [x] **E2E Tests**: Playwright/Cypress
-- [x] **Performance Tests**: Mock flow ≤3s
+- [ ] **API Tests**: Postman/Jest collection
+- [ ] **SSE Tests**: WebSocket client verification
+- [ ] **Contract Tests**: Schemathesis
+- [ ] **E2E Tests**: Playwright/Cypress
+- [ ] **Performance Tests**: Mock flow ≤3s
 
 ### Infrastructure
-- [x] Docker Compose setup
-- [x] Makefile targets: `setup`, `dev`, `test`, `verify`
-- [x] CI pipeline
+- [ ] Docker Compose setup
+- [ ] Makefile targets: `setup`, `dev`, `test`, `verify`
+- [ ] CI pipeline
 
 ---
 
-## ✅ Phase 1.6: UI Iteration Safety [COMPLETED]
+## 🛡️ Phase 1.6: UI Iteration Safety [PENDING]
 
-- [x] Create `apps/web/src/containers/` for state
-- [x] Create `apps/web/src/components/` for pure UI
-- [x] Implement Container/Presenter pattern
+- [ ] Create `apps/web/src/containers/` for state
+- [ ] Create `apps/web/src/components/` for pure UI
+- [ ] Implement Container/Presenter pattern
 
 ---
 
