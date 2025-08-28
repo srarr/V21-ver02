@@ -1,0 +1,104 @@
+# A standard Supabase project config file
+# This is a minimal configuration for local development
+
+# A unique project ID for your Supabase project
+project_id = "heliox-atlas-v21"
+
+[api]
+# Port for the local API
+port = 54321
+# Schemas to expose via the API
+schemas = ["public", "storage", "graphql_public"]
+# Extra schemas to add to the search_path of every request.
+extra_search_path = ["public", "extensions"]
+# The maximum number of rows returned from a view, table, or stored procedure. Limits payload size for accidental or malicious requests.
+max_rows = 1000
+
+[db]
+# Port for the local database  
+port = 54322
+# The database major version to use. This has to be the same as your remote database's.
+major_version = 15
+
+[db.pooler]
+# Allow the pooler to use the same port as the database.
+enabled = false
+# Port for the pooler.
+port = 54329
+# How the pooler is configured.
+default_pool_size = 20
+# Maximum number of client connections allowed to the pooler.
+max_client_conn = 100
+
+[realtime]
+# Enable the Realtime API.
+enabled = true
+# Bind realtime via either IPv4 or IPv6.
+ip_version = "IPv4"
+
+[studio]
+# Port for Supabase Studio
+port = 54323
+# External URL of the API server that frontend connects to.
+api_url = "http://localhost"
+# OpenAI API Key to use for Supabase AI in the Supabase Studio
+openai_api_key = "env(OPENAI_API_KEY)"
+
+[inbucket]
+# Port for the email testing server.
+port = 54324
+# Email sender, sender name and from_name
+smtp_port = 54325
+
+[storage]
+# Enable the Storage API.
+enabled = true
+# The maximum file size allowed (e.g. "5MB", "500KB").
+file_size_limit = "50MiB"
+
+[auth]
+# The base URL of your website. Used as an allow-list for redirects and for constructing URLs used in emails.
+site_url = "http://localhost:5173"
+# A list of exact URLs that auth providers are permitted to redirect to post authentication.
+additional_redirect_urls = ["http://localhost:3000"]
+# How long tokens are valid for, in seconds. Defaults to 3600 (1 hour), maximum 604,800 seconds (one week).
+jwt_expiry = 3600
+# If disabled, the refresh token will never expire.
+enable_refresh_token_rotation = true
+# Allows refresh tokens to be reused after expiry, up to the specified interval in seconds.
+refresh_token_reuse_interval = 10
+# Allow/disallow new user signups to your project.
+enable_signup = true
+# Allow/disallow testing manual linking of accounts
+enable_manual_linking = false
+
+[auth.email]
+# Allow/disallow new user signups via email to your project.
+enable_signup = true
+# If enabled, a user will be required to confirm any email change on both the old, and new email addresses. If disabled, only the new email is required to confirm.
+double_confirm_changes = true
+# If enabled, users need to confirm their email address before signing in.
+enable_confirmations = false
+
+[auth.sms]
+# Allow/disallow new user signups via SMS to your project.
+enable_signup = true
+# If enabled, users need to confirm their phone number before signing in.
+enable_confirmations = false
+
+# Use an external OAuth provider. The full list of providers are:
+[auth.external.apple]
+enabled = false
+client_id = ""
+secret = ""
+
+[analytics]
+enabled = false
+port = 54327
+# backend = "postgres"
+
+# Experimental features may be deprecated any time
+[experimental]
+# Configures Postgres storage engine to use OrioleDB
+orioledb_version = ""
+# Configures S3 storage engine to use Supabase/S3

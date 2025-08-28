@@ -1,0 +1,38 @@
+# Dependencies tracking file
+# Format: [type] package@version
+
+# System Requirements
+[sys] go@1.22+
+[sys] node@20+
+[sys] postgresql@15+
+[sys] redis@7+ (optional)
+[sys] jq@1.6+ (required for scripts)
+
+# Go modules (will be added when apps/api created)
+[go] github.com/gin-gonic/gin@v1.9.1 (planned)
+[go] github.com/lib/pq@v1.10.9 (planned)
+[go] github.com/nats-io/nats.go@v1.31.0 (planned)
+[go] go.uber.org/zap@v1.26.0 (planned)
+[go] github.com/google/wire@v0.5.0 (planned)
+
+# NPM packages (will be added when apps created)
+[npm] typescript@5.3.3 (planned)
+[npm] @sveltejs/kit@2.0.0 (planned)
+[npm] zod@3.22.4 (planned)
+[npm] @langchain/core@0.1.0 (planned)
+[npm] vitest@1.0.0 (planned)
+[npm] playwright@1.40.0 (planned)
+
+# Python tools (optional)
+[pip] schemathesis@3.19.0 (for contract testing)
+
+# Rust dependencies (for Phase 3)
+[cargo] tokio@1.35.0 (planned)
+[cargo] serde@1.0.0 (planned)
+[cargo] arrow@50.0.0 (planned)
+
+# External Services (API keys needed)
+[ext] Anthropic Claude API (required)
+[ext] OpenAI GPT-4 API (fallback)
+[ext] Yahoo Finance API (for market data)
+[ext] Alpha Vantage API (backup market data)

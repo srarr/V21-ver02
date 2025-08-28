@@ -1,0 +1,7 @@
+{
+  "universe": ["XAUUSD", "EURUSD"],
+  "features": ["SMA", "EMA", "RSI"],
+  "constraints": {
+    "risk_bp": 50
+  }
+}

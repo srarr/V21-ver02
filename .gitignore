@@ -1,0 +1,413 @@
+# Heliox ATLAS v21 - Git Ignore Configuration
+
+# ========== Environment Files ==========
+.env
+.env.local
+.env.development.local
+.env.test.local  
+.env.production.local
+.env.staging.local
+
+# Environment backups
+.env.backup
+.env.*.backup
+env-snapshot
+
+# ========== Dependencies ==========
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-debug.log*
+
+# Go modules
+vendor/
+go.sum.backup
+
+# Rust dependencies  
+target/
+Cargo.lock
+
+# Python
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+pip-log.txt
+
+# ========== Build Outputs ==========
+
+# Frontend builds
+dist/
+build/
+.svelte-kit/
+.next/
+.nuxt/
+.vuepress/dist/
+coverage/
+.nyc_output/
+
+# Go builds
+*.exe
+*.exe~
+*.dll
+*.so  
+*.dylib
+main
+api
+heliox-api
+
+# Rust builds
+target/
+**/*.rs.bk
+
+# General compiled files
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.a
+*.lib
+
+# ========== Temporary Files ==========
+
+# Application temp
+tmp/
+temp/
+.tmp/
+cache/
+.cache/
+
+# OS temp files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# ========== Logs ==========
+
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Application logs
+heliox.log
+heliox.*.log
+api.log
+orchestrator.log
+error.log
+access.log
+debug.log
+
+# Rotated logs
+*.log.[0-9]*
+*.log.gz
+*.log.zip
+
+# ========== IDE and Editor Files ==========
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.ipr
+*.iws
+.idea_modules/
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# Vim
+.vim/
+*.vim
+.viminfo
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+
+# Atom
+.atom/
+
+# ========== Development Databases ==========
+
+# SQLite
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+
+# Local database dumps
+*.dump
+*.backup
+*.bak
+db_backup_*
+schema.sql.backup
+
+# ========== Testing ==========
+
+# Test outputs
+test-results/
+test-output/
+coverage/
+.coverage
+.pytest_cache/
+.tox/
+junit.xml
+coverage.xml
+
+# E2E test artifacts
+screenshots/
+videos/
+test-results-*/
+playwright-report/
+
+# ========== Security ==========
+
+# Private keys and certificates
+*.pem
+*.key  
+*.crt
+*.csr
+*.p12
+*.pfx
+id_rsa
+id_dsa
+id_ed25519
+
+# API keys and secrets (additional safety)
+*secret*
+*key*
+*token*
+*password*
+*credential*
+secrets.json
+config/secrets.yaml
+
+# OAuth and auth tokens
+.auth/
+auth.json
+oauth.json
+
+# ========== Deployment ==========
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+docker-compose.local.yml
+.docker/
+
+# Kubernetes  
+*.kubeconfig
+kube-config*
+k8s-secrets.yaml
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+terraform.tfvars
+terraform.tfvars.json
+
+# Ansible
+*.retry
+.vault_pass
+
+# ========== Cloud and Services ==========
+
+# AWS
+.aws/
+aws-credentials
+.elasticbeanstalk/
+
+# Google Cloud
+.gcloud/
+gcloud-credentials.json
+service-account*.json
+
+# Azure
+.azure/
+
+# Vercel
+.vercel/
+
+# Netlify
+.netlify/
+
+# ========== Project Specific ==========
+
+# Heliox artifacts
+*.hsp
+*.hspz
+heliox-strategies/
+strategy-packages/
+
+# Backtest results
+backtests/
+backtest-*.json
+equity-curves/
+trade-logs/
+
+# Market data cache
+market-data/
+ohlc-data/
+tick-data/
+
+# Generated contracts
+generated/
+codegen/
+*.generated.*
+
+# Snapshots (but keep directory structure)
+.snapshots/*.tar.gz
+.snapshots/session-history/*.tar.gz
+# Keep the structure files
+!.snapshots/.gitkeep
+!.snapshots/session-history/.gitkeep
+
+# HSP packages
+hsp-packages/
+*.hsp.json
+
+# ========== Documentation Builds ==========
+
+# Generated docs
+docs/_build/
+docs/build/
+site/
+_site/
+
+# API documentation
+api-docs/
+swagger-ui/
+redoc-static.html
+
+# ========== Monitoring and Analytics ==========
+
+# Metrics
+metrics.json
+metrics-*.json
+
+# Performance profiles
+*.prof
+*.cpuprofile
+*.memprofile
+
+# Error dumps
+core.*
+*.dump
+*.dmp
+
+# ========== Local Development ==========
+
+# Local dev overrides
+docker-compose.local.yml
+docker-compose.dev.yml
+local.env
+
+# Development scripts
+dev-scripts/
+local-scripts/
+
+# Mock data
+mocks/
+mock-data/
+test-data/
+fixtures/data/
+
+# ========== Package Manager Artifacts ==========
+
+# NPM
+package-lock.json.backup
+.npm/
+.eslintcache
+
+# Yarn
+.yarn/cache/
+.yarn/unplugged/
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# PNPM
+.pnpm-store/
+
+# ========== Runtime ==========
+
+# Process IDs
+*.pid
+*.seed
+*.pid.lock
+
+# Runtime data
+pids/
+.nrepl-port
+.port
+
+# Diagnostic reports
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# ========== Custom Ignores ==========
+
+# Add your custom ignores here
+# local-config/
+# my-custom-files/
+
+# Temporary development files
+TODO.md
+SCRATCH.md
+NOTES.md
+playground/
+
+# Local certificates for HTTPS development
+localhost.pem
+localhost-key.pem
+ssl/local/
+
+# ========== Keep These Files ==========
+
+# Explicitly keep important files that might be caught by wildcards
+!.env.example
+!.env.full.example
+!README.md
+!LICENSE
+!CHANGELOG.md
+!.gitkeep
+!.placeholder
+
+# Keep configuration templates
+!config/*.example
+!config/*.template
+
+# Keep essential dot files
+!.editorconfig
+!.prettierrc
+!.eslintrc*
+!.tool-versions

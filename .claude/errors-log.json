@@ -1,0 +1,76 @@
+{
+  "errors": [
+    {
+      "id": "err-001",
+      "type": "CORS",
+      "message": "CORS policy: No 'Access-Control-Allow-Origin'",
+      "solution": "Add CORS middleware with proper headers in Gin",
+      "file": "apps/api/internal/middleware/cors.go",
+      "resolved": false,
+      "frequency": "common"
+    },
+    {
+      "id": "err-002", 
+      "type": "DB_CONNECTION",
+      "message": "pq: SSL is not enabled on the server",
+      "solution": "Add sslmode=disable to PostgreSQL connection string",
+      "file": ".env",
+      "resolved": false,
+      "frequency": "common"
+    },
+    {
+      "id": "err-003",
+      "type": "PORT_IN_USE", 
+      "message": "bind: address already in use",
+      "solution": "Find and kill process: lsof -i :PORT then kill -9 PID",
+      "file": "various",
+      "resolved": false,
+      "frequency": "common"
+    },
+    {
+      "id": "err-004",
+      "type": "MODULE_NOT_FOUND",
+      "message": "module not found or cannot import",
+      "solution": "Run 'go mod tidy' for Go or 'npm install' for Node.js",
+      "file": "various",
+      "resolved": false,
+      "frequency": "common"
+    },
+    {
+      "id": "err-005",
+      "type": "MIGRATION_FAILED",
+      "message": "migration failed to apply",
+      "solution": "Check SQL syntax, verify PostgreSQL permissions, check if already applied",
+      "file": "contracts/schemas/sql/migrations/",
+      "resolved": false,
+      "frequency": "occasional"
+    },
+    {
+      "id": "err-006",
+      "type": "SSE_NOT_WORKING",
+      "message": "Server-sent events not streaming to client",
+      "solution": "Check CORS headers, verify Content-Type: text/event-stream, check buffering",
+      "file": "apps/api/internal/handlers/events.go",
+      "resolved": false,
+      "frequency": "occasional"
+    }
+  ],
+  "common_fixes": {
+    "port_in_use": "lsof -i :PORT && kill -9 PID",
+    "module_not_found": "go mod tidy || npm install",
+    "migration_failed": "Check SQL syntax and permissions",
+    "typescript_error": "npm run type-check",
+    "cors_blocked": "Add proper CORS headers",
+    "db_connection": "Verify PostgreSQL is running and connection string is correct",
+    "docker_not_running": "docker-compose up -d",
+    "env_vars_missing": "Copy .env.example to .env and fill values"
+  },
+  "debugging_commands": {
+    "check_services": "./scripts/health-check.sh",
+    "verify_setup": "./scripts/verify-setup.sh", 
+    "view_logs": "tail -f logs/*.log",
+    "test_api": "curl -v localhost:8080/health",
+    "check_db": "psql $POSTGRES_DSN -c 'SELECT 1'",
+    "list_ports": "lsof -i -P | grep LISTEN"
+  }
+}

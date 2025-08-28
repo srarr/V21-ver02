@@ -1,0 +1,136 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2024-08-28T03:00:00Z",
+  "project": "Heliox ATLAS v21",
+  "currentMilestone": 1,
+  "currentPhase": "1.2 - Core API Implementation",
+  "activeTask": "Bootstrap Go API with Gin framework",
+  
+  "systemState": {
+    "servicesRunning": [],
+    "servicesNotStarted": ["api", "postgres", "redis", "minio", "orchestrator", "frontend", "nats"],
+    "lastHealthCheck": "not_run"
+  },
+  
+  "workingFiles": [
+    "ROADMAP.md",
+    "CONTINUITY.md", 
+    "DECISIONS.md",
+    "HANDOFF.md",
+    "Makefile"
+  ],
+  
+  "blockers": [
+    {
+      "id": "blk-001",
+      "description": "No LLM API keys configured",
+      "impact": "Cannot test AI features",
+      "workaround": "Use mock responses for development"
+    },
+    {
+      "id": "blk-002",
+      "description": "No development environment setup",
+      "impact": "Cannot run services",
+      "workaround": "Run make setup after framework completion"
+    }
+  ],
+  
+  "criticalPaths": {
+    "database": {
+      "type": "PostgreSQL",
+      "version": "15+",
+      "extensions": ["pgcrypto", "uuid-ossp"],
+      "migrations": ["001_init.sql"],
+      "status": "not_setup"
+    },
+    "messageQueue": {
+      "type": "NATS JetStream", 
+      "status": "not_installed",
+      "plannedTopics": ["heliox.events.*", "heliox.commands.*"]
+    },
+    "api": {
+      "framework": "Gin",
+      "port": 8080,
+      "status": "not_implemented",
+      "plannedEndpoints": ["/health", "/v1/runs", "/v1/runs/{id}/events", "/v1/portfolio"]
+    },
+    "frontend": {
+      "framework": "SvelteKit",
+      "port": 5173,
+      "status": "not_implemented"
+    },
+    "orchestrator": {
+      "framework": "LangGraph",
+      "status": "not_implemented",
+      "nodes": ["Architect", "Synth", "T0", "T1", "T2", "T3", "Pack"]
+    }
+  },
+  
+  "codePatterns": {
+    "errorHandling": "return early with gin.H{\"error\": msg}",
+    "logging": "zap.Logger with correlation ID",
+    "validation": "dedicated Validate() methods on structs",
+    "testing": "table-driven tests with testify"
+  },
+  
+  "namingConventions": {
+    "go": {
+      "files": "snake_case.go",
+      "types": "PascalCase",
+      "interfaces": "PascalCase with 'er' suffix",
+      "packages": "lowercase"
+    },
+    "typescript": {
+      "files": "kebab-case.ts",
+      "types": "PascalCase", 
+      "interfaces": "IPascalCase",
+      "functions": "camelCase"
+    },
+    "database": {
+      "tables": "snake_case",
+      "columns": "snake_case",
+      "indexes": "idx_table_column",
+      "constraints": "fk_child_parent"
+    }
+  },
+  
+  "environmentSecrets": {
+    "required": [
+      "ANTHROPIC_API_KEY",
+      "OPENAI_API_KEY"
+    ],
+    "optional": [
+      "SENTRY_DSN",
+      "DATADOG_API_KEY"
+    ],
+    "local": [
+      "POSTGRES_DSN",
+      "REDIS_URL",
+      "NATS_URL"
+    ]
+  },
+  
+  "testData": {
+    "samplePrompt": "Create a momentum strategy for NASDAQ stocks using 20-day and 50-day moving averages",
+    "sampleTraceId": "tr_20240827_abc123",
+    "mockResponse": "{\"status\":\"success\",\"blueprint\":{\"name\":\"MA Crossover\",\"indicators\":[]}}"
+  },
+  
+  "frameworkProgress": {
+    "documentation": "completed",
+    "makefile": "completed",
+    "claude_context": "completed",
+    "scripts": "completed",
+    "contracts": "completed",
+    "config": "completed"
+  },
+  
+  "phase1Progress": {
+    "1.1_infrastructure": "completed",
+    "1.2_core_api": "pending",
+    "1.3_orchestrator": "pending",
+    "1.4_frontend": "pending",
+    "1.5_integration": "pending",
+    "1.6_ui_safety": "pending"
+  }
+}

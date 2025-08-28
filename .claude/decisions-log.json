@@ -1,0 +1,68 @@
+{
+  "decisions": [
+    {
+      "id": "dec-001",
+      "date": "2024-08-27",
+      "decision": "Use NATS JetStream over Redis for message queue",
+      "reasoning": "Built-in persistence, better replay capabilities, native clustering",
+      "impact": "More reliable event streaming but additional service to manage",
+      "status": "accepted"
+    },
+    {
+      "id": "dec-002", 
+      "date": "2024-08-27",
+      "decision": "SvelteKit for frontend over Next.js",
+      "reasoning": "Better SSE integration, smaller bundle, simpler state management",
+      "impact": "Faster development but smaller ecosystem",
+      "status": "accepted"
+    },
+    {
+      "id": "dec-003",
+      "date": "2024-08-27", 
+      "decision": "PostgreSQL with TimescaleDB for all data storage",
+      "reasoning": "Single database for both time-series and relational data",
+      "impact": "Simplified architecture but need to tune for time-series performance", 
+      "status": "accepted"
+    },
+    {
+      "id": "dec-004",
+      "date": "2024-08-27",
+      "decision": "REST + SSE over GraphQL or gRPC",
+      "reasoning": "Simple to implement, wide browser support, easy debugging",
+      "impact": "Less type safety but faster initial development",
+      "status": "accepted"
+    },
+    {
+      "id": "dec-005",
+      "date": "2024-08-27",
+      "decision": "LangGraph for orchestration over Temporal/Airflow", 
+      "reasoning": "Native LLM integration, built for AI workflows",
+      "impact": "Perfect fit for AI use case but less mature ecosystem",
+      "status": "accepted"
+    },
+    {
+      "id": "dec-006",
+      "date": "2024-08-27",
+      "decision": "Rust for backtest engine over Go/Python",
+      "reasoning": "Maximum performance for number crunching, memory safety",
+      "impact": "Best performance but longer development time",
+      "status": "accepted"
+    },
+    {
+      "id": "dec-007",
+      "date": "2024-08-27",
+      "decision": "Local-first development approach",
+      "reasoning": "Faster iteration, no cloud dependencies for development",
+      "impact": "More setup complexity but better developer experience",
+      "status": "accepted"
+    },
+    {
+      "id": "dec-008",
+      "date": "2024-08-27", 
+      "decision": "Framework helper system for Claude Code memory",
+      "reasoning": "Solve continuity issues with comprehensive state tracking",
+      "impact": "More upfront work but enables long-term development success",
+      "status": "accepted"
+    }
+  ]
+}

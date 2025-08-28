@@ -1,0 +1,20 @@
+# Tool versions for asdf version manager
+# https://asdf-vm.com/
+
+# Node.js (for frontend and orchestrator)
+nodejs 20.11.0
+
+# Go (for API gateway)  
+golang 1.22.0
+
+# Rust (for backtest engine)
+rust 1.75.0
+
+# Python (for scripts and schemathesis)
+python 3.11.7
+
+# PostgreSQL (for database)
+postgres 15.5
+
+# Redis (for caching - optional)
+redis 7.2.4

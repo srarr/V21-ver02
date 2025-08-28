@@ -1,0 +1,80 @@
+[
+  {
+    "id": "strat_001",
+    "name": "MA Crossover",
+    "version": "1.0.0",
+    "timeframe": "1h",
+    "rules": [
+      {
+        "if": "SMA(20) > SMA(50) and RSI > 50",
+        "then": "BUY"
+      },
+      {
+        "if": "SMA(20) < SMA(50) or RSI < 30",
+        "then": "SELL"
+      }
+    ],
+    "params": {
+      "fast_ma": 20,
+      "slow_ma": 50,
+      "rsi_period": 14,
+      "position_size": 0.02
+    },
+    "metadata": {
+      "tags": ["trend", "momentum"],
+      "notes": "Classic moving average crossover with RSI filter"
+    }
+  },
+  {
+    "id": "strat_002",
+    "name": "RSI Mean Reversion",
+    "version": "1.0.0",
+    "timeframe": "15m",
+    "rules": [
+      {
+        "if": "RSI < 30 and not position",
+        "then": "BUY"
+      },
+      {
+        "if": "RSI > 70 and position > 0",
+        "then": "SELL"
+      }
+    ],
+    "params": {
+      "rsi_period": 14,
+      "oversold": 30,
+      "overbought": 70,
+      "position_size": 0.01
+    },
+    "metadata": {
+      "tags": ["mean-reversion", "oscillator"],
+      "notes": "Simple RSI oversold/overbought strategy"
+    }
+  },
+  {
+    "id": "strat_003",
+    "name": "MACD Trend Follow",
+    "version": "1.0.0",
+    "timeframe": "4h",
+    "rules": [
+      {
+        "if": "MACD > Signal and MACD > 0",
+        "then": "BUY"
+      },
+      {
+        "if": "MACD < Signal",
+        "then": "SELL"
+      }
+    ],
+    "params": {
+      "fast_ema": 12,
+      "slow_ema": 26,
+      "signal_ema": 9,
+      "position_size": 0.03
+    },
+    "metadata": {
+      "tags": ["trend", "momentum"],
+      "notes": "MACD crossover with zero line filter"
+    }
+  }
+]

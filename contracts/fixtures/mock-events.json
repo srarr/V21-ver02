@@ -1,0 +1,91 @@
+[
+  {
+    "runId": "b6c00000-0000-0000-0000-000000000001",
+    "seq": 1,
+    "phase": "architect",
+    "type": "status",
+    "ts": "2024-08-27T10:15:33.001Z",
+    "payload": {
+      "msg": "Analyzing trading requirements",
+      "progress": 0.1
+    }
+  },
+  {
+    "runId": "b6c00000-0000-0000-0000-000000000001",
+    "seq": 2,
+    "phase": "architect",
+    "type": "artifact",
+    "ts": "2024-08-27T10:15:33.120Z",
+    "payload": {
+      "blueprint": {
+        "universe": ["XAUUSD", "EURUSD"],
+        "features": ["SMA", "EMA"],
+        "constraints": {
+          "risk_bp": 50
+        }
+      }
+    }
+  },
+  {
+    "runId": "b6c00000-0000-0000-0000-000000000001",
+    "seq": 3,
+    "phase": "synth",
+    "type": "status",
+    "ts": "2024-08-27T10:15:34.001Z",
+    "payload": {
+      "msg": "Generating strategy candidates",
+      "progress": 0.3
+    }
+  },
+  {
+    "runId": "b6c00000-0000-0000-0000-000000000001",
+    "seq": 4,
+    "phase": "synth",
+    "type": "artifact",
+    "ts": "2024-08-27T10:15:35.500Z",
+    "payload": {
+      "strategies": [
+        {
+          "name": "MA Crossover",
+          "confidence": 0.85
+        }
+      ]
+    }
+  },
+  {
+    "runId": "b6c00000-0000-0000-0000-000000000001",
+    "seq": 5,
+    "phase": "t0",
+    "type": "status",
+    "ts": "2024-08-27T10:15:36.001Z",
+    "payload": {
+      "msg": "Running quick backtest",
+      "progress": 0.6
+    }
+  },
+  {
+    "runId": "b6c00000-0000-0000-0000-000000000001",
+    "seq": 6,
+    "phase": "t0",
+    "type": "artifact",
+    "ts": "2024-08-27T10:15:38.200Z",
+    "payload": {
+      "metrics": {
+        "sharpe": 1.25,
+        "max_drawdown": -0.15,
+        "win_rate": 0.58
+      }
+    }
+  },
+  {
+    "runId": "b6c00000-0000-0000-0000-000000000001",
+    "seq": 7,
+    "phase": "pack",
+    "type": "artifact",
+    "ts": "2024-08-27T10:15:39.100Z",
+    "payload": {
+      "hsp_url": "http://localhost:8080/download/strategy.hsp",
+      "size_kb": 125
+    }
+  }
+]

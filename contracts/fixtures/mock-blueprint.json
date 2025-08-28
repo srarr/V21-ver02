@@ -1,0 +1,14 @@
+{
+  "id": "bp_001",
+  "name": "Momentum Trading Blueprint",
+  "universe": ["XAUUSD", "EURUSD", "GBPUSD"],
+  "features": ["SMA", "EMA", "RSI", "MACD", "ATR"],
+  "constraints": {
+    "risk_bp": 50,
+    "max_positions": 3,
+    "stop_loss_pct": 2,
+    "take_profit_pct": 5
+  },
+  "timeframe": "1h",
+  "notes": "Focus on trend following with momentum confirmation"
+}

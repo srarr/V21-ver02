@@ -1,0 +1,63 @@
+{
+  "runId": "b6c00000-0000-0000-0000-000000000001",
+  "strategyId": "strat_001",
+  "timeframe": "1h",
+  "period": {
+    "start": "2023-01-01T00:00:00Z",
+    "end": "2023-12-31T23:59:59Z"
+  },
+  "initial_capital": 100000,
+  "final_capital": 115234.56,
+  "equity_curve": [
+    100000, 100500, 101200, 100800, 102300, 103500, 103200, 104800,
+    105600, 106200, 105800, 107300, 108900, 109500, 110200, 111800,
+    112400, 111900, 113200, 114100, 114800, 115234.56
+  ],
+  "trades": [
+    {
+      "timestamp": "2023-01-15T10:00:00Z",
+      "side": "BUY",
+      "price": 1.0823,
+      "quantity": 1000,
+      "pnl": 0
+    },
+    {
+      "timestamp": "2023-01-20T14:00:00Z",
+      "side": "SELL",
+      "price": 1.0945,
+      "quantity": 1000,
+      "pnl": 122
+    },
+    {
+      "timestamp": "2023-02-03T09:00:00Z",
+      "side": "BUY",
+      "price": 1.0912,
+      "quantity": 1500,
+      "pnl": 0
+    }
+  ],
+  "metrics": {
+    "total_return": 0.1523,
+    "annual_return": 0.1523,
+    "sharpe_ratio": 1.25,
+    "sortino_ratio": 1.45,
+    "max_drawdown": -0.082,
+    "win_rate": 0.58,
+    "profit_factor": 1.85,
+    "total_trades": 45,
+    "winning_trades": 26,
+    "losing_trades": 19,
+    "avg_win": 423.50,
+    "avg_loss": -228.90,
+    "best_trade": 1250.00,
+    "worst_trade": -650.00,
+    "avg_trade_duration": "3d 5h",
+    "exposure_time": 0.72
+  },
+  "risk_metrics": {
+    "var_95": -0.023,
+    "cvar_95": -0.035,
+    "kelly_criterion": 0.15,
+    "risk_reward_ratio": 1.85
+  }
+}

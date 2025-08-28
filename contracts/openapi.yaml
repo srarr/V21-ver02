@@ -1,0 +1,266 @@
+openapi: 3.0.3
+info:
+  title: Heliox ATLAS v21 Trading Platform API
+  version: 1.0.0
+  description: Trading strategy generation and backtesting platform
+servers:
+  - url: http://localhost:8080
+    description: Local development server
+
+paths:
+  /healthz:
+    get:
+      summary: Health check endpoint
+      operationId: getHealth
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: [ok]
+                required: [status]
+
+  /version:
+    get:
+      summary: Get API version information
+      operationId: getVersion
+      responses:
+        '200':
+          description: Version information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    example: "1.0.0"
+                  commit:
+                    type: string
+                    example: "abc123def"
+                required: [version, commit]
+
+  /v1/runs:
+    post:
+      summary: Create a new strategy generation run
+      operationId: createRun
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                prompt:
+                  type: string
+                  description: Natural language strategy description
+                  example: "Create a moving average crossover strategy"
+              required: [prompt]
+      responses:
+        '201':
+          description: Run created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  runId:
+                    type: string
+                    format: uuid
+                    example: "123e4567-e89b-12d3-a456-426614174000"
+                required: [runId]
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /v1/runs/{id}:
+    get:
+      summary: Get run status and summary
+      operationId: getRun
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Run ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Run information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: [PENDING, RUNNING, FAILED, COMPLETED]
+                  lastSeq:
+                    type: integer
+                    description: Last event sequence number
+                    minimum: 0
+                  summary:
+                    type: object
+                    description: Run summary data
+                    properties:
+                      prompt:
+                        type: string
+                      startedAt:
+                        type: string
+                        format: date-time
+                      finishedAt:
+                        type: string
+                        format: date-time
+                      phases:
+                        type: array
+                        items:
+                          type: string
+                required: [status, lastSeq, summary]
+        '404':
+          description: Run not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /v1/runs/{id}/events:
+    get:
+      summary: Stream run events via Server-Sent Events
+      operationId: getRunEvents
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Run ID
+          schema:
+            type: string
+            format: uuid
+        - name: since
+          in: query
+          required: false
+          description: Resume from sequence number
+          schema:
+            type: integer
+            minimum: 0
+      responses:
+        '200':
+          description: SSE stream of events
+          content:
+            text/event-stream:
+              schema:
+                type: string
+                description: |
+                  Server-sent event stream. Each event has format:
+                  event: {type}
+                  data: {JSON payload}
+                  
+                  Event types: status, artifact, error
+        '404':
+          description: Run not found
+
+  /v1/portfolio:
+    get:
+      summary: List portfolio items
+      operationId: listPortfolio
+      responses:
+        '200':
+          description: Portfolio items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PortfolioItem'
+
+    post:
+      summary: Save strategy to portfolio
+      operationId: saveToPortfolio
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  format: uuid
+                name:
+                  type: string
+                  description: Strategy name
+                strategy:
+                  type: object
+                  description: Strategy configuration
+              required: [id, name, strategy]
+      responses:
+        '201':
+          description: Saved to portfolio
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PortfolioItem'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+        details:
+          type: object
+          description: Additional error details
+      required: [error]
+
+    PortfolioItem:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        strategy:
+          type: object
+        createdAt:
+          type: string
+          format: date-time
+      required: [id, name, strategy, createdAt]
+
+    OrchestratorEvent:
+      type: object
+      properties:
+        runId:
+          type: string
+          format: uuid
+        seq:
+          type: integer
+          minimum: 1
+        phase:
+          type: string
+          enum: [architect, synth, t0, pack]
+        type:
+          type: string
+          enum: [status, artifact, error]
+        ts:
+          type: string
+          format: date-time
+        payload:
+          type: object
+      required: [runId, seq, phase, type, ts, payload]
